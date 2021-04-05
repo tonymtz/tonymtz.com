@@ -203,8 +203,8 @@ body {
   z-index: 3;
   width: 1px;
   height: 160px;
-  right: 10em;
-  bottom: 10em;
+  right: 20%;
+  bottom: 24%;
 }
 #smoke span {
   display: block;
