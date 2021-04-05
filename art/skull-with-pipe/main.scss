@@ -1,0 +1,266 @@
+html {
+  font-family: 'Noto Sans JP', sans-serif;
+  --skull-color: #e2ded5;
+  --pipe-color: #ad745b;
+  --skull-stroke: #212154;
+}
+
+body {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(0deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+  height: 1000vh;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+// TEXT
+
+#falling-text {
+  max-width: 800px;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+@-webkit-keyframes fading {
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes falling {
+  from {
+    top: -250px;
+  }
+  to {
+    top: 388px;
+  }
+}
+
+#falling-text div {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  text-transform: lowercase;
+  transform: rotate(90deg);
+  -webkit-animation-name: falling, fading;
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: normal;
+}
+
+$durations: 4s, 6s, 8s, 10s, 13s;
+
+@for $i from 1 through 5 {
+  .t#{$i} {
+    $duration: nth($durations, $i);
+    animation-duration: $duration;
+    -webkit-animation-duration: $duration;
+  }
+}
+
+.credits {
+  position: fixed;
+  bottom: 0;
+  left: 2em;
+}
+
+// SKULL
+
+#the-skull {
+  max-width: 800px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  width: 100%;
+  transform: translate(-50%, 10%);
+}
+
+#Jaw, #Lower_teeth {
+  animation: swing ease-in-out 2s infinite alternate;
+  transform-origin: center -20px;
+  transform-box: fill-box;
+  float: left;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(-1deg);
+  }
+}
+
+#Pipe {
+  animation: swing-pipe ease-in-out 2s infinite alternate;
+  transform-origin: center -60px;
+  transform-box: fill-box;
+  float: left;
+}
+
+@keyframes swing-pipe {
+  0% {
+    transform: rotate(-1deg);
+  }
+  70% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(6deg);
+  }
+}
+
+
+#Skull, #Upper_teeth {
+  animation: swing-pipe ease-in-out 1s infinite alternate;
+  transform-origin: center -60px;
+  transform-box: fill-box;
+  float: left;
+}
+
+@keyframes swing-pipe {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0.5deg);
+  }
+}
+
+.floating {
+  & > * {
+    height: 80vh;
+    padding: 10vh 0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    text-align: justify;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  & > p:first-child {
+    top: 0;
+  }
+
+  & > p:nth-child(2) {
+    top: 17vh;
+  }
+
+  & > p:nth-child(3) {
+    top: 28vh;
+  }
+
+  & > p:nth-child(4) {
+    top: 51vh;
+  }
+
+  & > p:nth-child(5) {
+    top: 68vh;
+  }
+}
+
+.clearfix::after {
+  content: ' ';
+  background-color: #e52643;
+  display: block;
+  height: 21vh;
+  width: 100%;
+}
+
+.shadow {
+  stroke: var(--skull-stroke);
+  fill: var(--skull-stroke);
+  stroke-miterlimit: 10;
+}
+
+.figure {
+  fill: var(--skull-color);
+  stroke: var(--skull-stroke);
+  stroke-width: 8;
+  stroke-miterlimit: 10;
+}
+
+#Pipe {
+  .figure {
+    fill: var(--pipe-color);
+  }
+}
+
+.credits {
+  position: fixed;
+  bottom: 5em;
+  left: -2em;
+  transform: rotate(-90deg);
+  margin: 0;
+}
+
+// SMOKE
+
+#smoke {
+  position: absolute;
+  z-index: 3;
+  width: 1px;
+  height: 160px;
+  right: 10em;
+  bottom: 10em;
+
+  span {
+    display: block;
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    margin-left: -20px;
+    height: 0px;
+    width: 0px;
+    border: 35px solid var(--skull-stroke);
+    border-radius: 35px;
+    left: -14px;
+    opacity: 0;
+    transform: scale(0.2);
+  }
+}
+
+/* Smoke animation */
+
+@keyframes smokeL {
+  0% {
+    transform: scale(0.2) translate(0, 0)
+  }
+  10% {
+    opacity: 1;
+    transform: scale(0.2) translate(0, -5px)
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) translate(-20px, -130px)
+  }
+}
+
+@keyframes smokeR {
+  0% {
+    transform: scale(0.2) translate(0, 0)
+  }
+  10% {
+    opacity: 1;
+    transform: scale(0.2) translate(0, -5px)
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) translate(20px, -130px)
+  }
+}
+
+@for $i from 0 through 9 {
+  #smoke .s#{$i} {
+    $dir: if($i % 2 == 0, 'L', 'R');
+    animation: smoke#{$dir} 10s #{$i}s infinite;
+  }
+}
