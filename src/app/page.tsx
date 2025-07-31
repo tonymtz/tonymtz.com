@@ -6,12 +6,8 @@ const links = [
   { href: 'https://tomatoro.com?utm-source=tonymtz-com&utm_campaign=page', label: 'Tomatoro' },
   { href: 'https://eslegalmitrabajo.com?utm-source=tonymtz-com&utm_campaign=page', label: '¿Es legal mi trabajo?' },
   { href: 'https://dolarenbancos.com?utm-source=tonymtz-com&utm_campaign=page', label: 'Dolar en bancos' },
-  { href: 'https://instagram.com/gatomocho', label: '@gatomocho Illustration' },
-  { href: 'https://gatomocho.com', label: 'Gatomocho Game Studio' },
-  { href: 'https://soundcloud.com/gatonejo', label: 'Gatonejo Music' },
-  { href: 'https://instagram.com/pozoletv', label: 'PozoleTV' },
-  { href: 'https://tiktok.com/@musicalavera', label: 'Musicalavera' },
   { href: 'https://perro.cafe/?utm-source=tonymtz-com&utm_campaign=page', label: 'Culto al Perro Café' },
+  { href: 'https://instagram.com/gatomocho', label: 'Fotografía' },
 ]
 
 export default function Home () {
